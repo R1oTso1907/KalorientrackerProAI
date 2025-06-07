@@ -706,6 +706,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ✅ HIER IST DIE KORREKTE CHATBOT-FUNKTION, DIE DEN SERVER KONTAKTIERT
+// ✅ HIER IST DIE KORREKTE CHATBOT-FUNKTION, DIE DEN LIVE-SERVER KONTAKTIERT
 async function sendMessage() {
     const input = document.getElementById("chatInput");
     const output = document.getElementById("chatOutput");
@@ -727,8 +728,8 @@ async function sendMessage() {
     output.scrollTop = output.scrollHeight;
 
     try {
-        // Anfrage an den lokalen Backend-Server senden
-        const res = await fetch("http://localhost:3000/chat", {
+        // HIER WURDE DIE URL GEÄNDERT, UM AUF IHREN LIVE-SERVER ZU VERWEISEN
+        const res = await fetch("https://kalorien-tracker-backend.onrender.com/chat", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ message }) // Die Nachricht als JSON senden
@@ -759,7 +760,7 @@ async function sendMessage() {
         // Fehler-Nachricht im Chat anzeigen
         const errorMessageDiv = document.createElement('p');
         errorMessageDiv.classList.add('chat-message', 'error-message', 'bot-message');
-        errorMessageDiv.innerHTML = `<strong>Bot:</strong> <span>Fehler: Konnte keine Verbindung zum Assistenten herstellen. (Läuft der Server auf Port 3000?)</span>`;
+        errorMessageDiv.innerHTML = `<strong>Bot:</strong> <span>Fehler: Konnte keine Verbindung zum Assistenten herstellen.</span>`;
         output.appendChild(errorMessageDiv);
     }
 
